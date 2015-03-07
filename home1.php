@@ -5,27 +5,6 @@
 	if($num>0){
 ?>
 
-<!-- pagination code -->
-<?php 
-
-	$num_rec_per_page=6;
-	$targetpage= "home.php";
-	if (isset($_GET["page"])) { 
-		$page  = $_GET["page"]; 
-	} 
-		else {
-		 $page=1; 
-	}; 
-
-	$start_from = ($page-1) * $num_rec_per_page; 
-
-	$sql = "select * from projects,user where projects.user_id=user.user_id order by projects.date desc LIMIT $start_from, $num_rec_per_page"; 
-	
-	$rs_result = mysql_query ($sql); //run the query
-	
-?>
-<!-- pagination code -->
-
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
@@ -67,11 +46,10 @@
 				</div>
 			</div>
 			<div class="posts">
-
-				<?php 
-					while ($data = mysql_fetch_array($rs_result)) { 
-				?> 
-					       <div class="post">
+				<?php
+						while($data=mysql_fetch_array($query)){
+					?>
+						<div class="post">
 							<div class="image">
 								<?php $imgName = $data['image']; ?>
    								<img src="up_image/<?PHP echo $imgName;?>" width="110px" height="100px">
@@ -85,33 +63,9 @@
 								</p>
 							</div>	
 						</div>
-				<?php 
-					}; 
-				?> 
-
-				<!-- pagination code -->
-				<?php 
-					//	$sql = $item->viewall(); 
-					$rs_result = $item->viewall();  //run the query
-					include_once("include/pagination.php");
-				?>
-				<!-- pagination code -->
-
-				<!-- pagination navbar -->
-				<?=$pagination ?>
-				<!-- pagination navbar -->
-
-						<!--
-							echo "<div class='current'><a href='home.php?page=1'>".'|<'."</a> </div>"; // Goto 1st page  
-
-							for ($i=1; $i<=$total_pages; $i++) { 
-							            echo "<div class='current'><a href='home.php?page=".$i."'>".$i."</a> </div>"; 
-							}; 
-							echo "<div class='current'><a href='home.php?page=$total_pages'>".'>|'."</a></div> "; // Goto last page
-						?>
-						</div>
-						-->
-				
+					<?php
+						}
+					?>
 					<?php
 
 						}
@@ -133,4 +87,3 @@
 	<!--footer end -->
 </body>
 </html>
-

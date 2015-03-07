@@ -36,7 +36,7 @@
 			</div>
 			<div class="mainfooter">
 				<div class="wrapper">
-					<address> 2014 &copy; Project Ocean. All rights reserved</address>
+					<address> 2015 &copy; <a href="index.php" style="color:#98d;">Project Ocean</a>. All rights reserved | Designed By <a href="facebook.com/imsujan276" style="color:#98d;">Sujan Gainju</a></address>
 				</div>
 			</div>
 		</footer>

@@ -1,4 +1,10 @@
 <?php include_once("class/classes.php");?>
+<?php
+	if(isset($_SESSION['uname'])){
+		header("Location:home.php");
+	}
+?>
+
 <html>
 	<head>
 		<title> Project Ocean </title>

@@ -99,7 +99,7 @@
 									</tr> 
 									<tr>
 										<td style="font-size: 17px;"> Link to file :</td>
-										<td> <input type="text"  class="ltext" name="filelink" placeholder="Link to file or report" value=""> </td>
+										<td> <input type="text"  class="ltext" name="filelink" placeholder="Link to file or report (optional)" value=""> </td>
 									</tr>
 									<tr>
 										<td colspan=2> <span>*</span> Please upload the zipped file </td>

@@ -1,4 +1,5 @@
 /*CSS Document */
+
 *{
 	margin:0px;
 	padding:0px;
@@ -72,7 +73,7 @@ select, option{
 
 .ltext{
 	display: block;
-	width: 300px;
+	width: 400px;
 	height: 34px;
 	padding: 5px 12px;
 	font-size: 14px;
@@ -81,7 +82,7 @@ select, option{
 	background-color: #FFF;
 	border: 2px solid #CCC;
 	border-radius: 15px 0 15px 0;
-	outline: 0px;
+	
 }
 		.ltext:focus{
 			background-color: #d9E9d9;
@@ -92,7 +93,7 @@ select, option{
 .dtext{
 	display: block;
 	outline: 0px;
-	height: 84px;
+	width: 400px;
 	padding: 10px 12px;
 	font-size: 14px;
 	line-height: 1.42857;
@@ -200,7 +201,7 @@ select, option{
 
 /*starting content*/
 .content{
-			height:1100px;
+			height:1070px;
 			background-color:#E9E9E9;
 			
 	}
@@ -420,7 +421,7 @@ select, option{
 	float:left;
 	border: 1px solid #000;
 	width:830px;
-	height:1050px;
+	height:1020px;
 	background-color: #ccc;
 	border-radius: 53px 0 53px 0;
 	
@@ -470,7 +471,7 @@ select, option{
 	float:right;
 	border: 1px solid #000;
 	width:845px;
-	height:1050px;
+	height:1020px;
 	background-color: #ccc;
 	border-radius: 53px 0 53px 0;
 }
@@ -514,13 +515,13 @@ select, option{
 	background-color:#E9E9E9;
 }
 		.lcontent .ldiv{
-			padding: 120px 350px;
+			padding: 120px 300px;
 		}
 
 				.lcontent .ldiv .lform{
 					height:270px;
 					background-color: #fff;
-					width: 500px;
+					width: 600px;
 					border: 2px solid #000;
 					border-radius: 35px 0 35px 0;
 				}
@@ -541,13 +542,13 @@ select, option{
 
 /*register css started */
 		.lcontent .rdiv{
-			padding: 30px 350px;
+			padding: 30px 300px;
 		}
 
 				.lcontent .rdiv .rform{
 					height:450px;
 					background-color: #fff;
-					width: 500px;
+					width: 600px;
 					border: 2px solid #000;
 					border-radius: 35px 0 35px 0;
 				}
@@ -623,28 +624,39 @@ select, option{
 }
 /*footer ended */
 
-/* you can change page navigation here*/
-.page-nav{
-	margin: 10px 0 0 0;
+/* Pagination bar css started*/
+div.pagination {
+	padding: 3px;
+	margin: 3px;
 	text-align: center;
 }
 
-.page-nav a{
-	border: none;
-	padding: 8px;
-	text-decoration: none;
-	background-color: #FFC;
-	border: thin solid #FC0;
+div.pagination a {
+	padding: 2px 5px 2px 5px;
+	margin: 2px;
+	border: 1px solid #AAAADD;
+	
+	text-decoration: none; /* no underline */
+	color: #000099;
+}
+div.pagination a:hover, div.pagination a:active {
+	border: 1px solid #000099;
 	color: #000;
 }
-
-.page-nav a:hover{
-	border: thin solid #FC0;
-	background-color: #FC0;
-	color: #fff;
-}
-
-/*this is the style for selected page number*/
-.page_link{
-	padding: 8px;
-}
+div.pagination span.current {
+	padding: 2px 5px 2px 5px;
+	margin: 2px;
+		border: 1px solid #000099;
+		
+		font-weight: bold;
+		background-color: #000099;
+		color: #FFF;
+	}
+	div.pagination span.disabled {
+		padding: 2px 5px 2px 5px;
+		margin: 2px;
+		border: 1px solid #EEE;
+	
+		color: #DDD;
+	}
+/* Pagination bar css ended */

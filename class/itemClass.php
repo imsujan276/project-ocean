@@ -1,6 +1,5 @@
 <?php
 
-
 class itemClass extends database{
 		
 		public function exec($sql){
@@ -16,9 +15,11 @@ class itemClass extends database{
 		$sql = "insert into projects set title='$ptitle', description='$description', catagory='$catagory', image='$image', mainfile='$mainfile', filelink='$filelink', user_id='".$_SESSION['user_id']."'";
 		return $this->exec($sql);
 		}
+
 		public function lastID(){
 			return mysql_insert_id();
 		}
+
 		public function viewall(){
 			$sql="select * from projects,user where projects.user_id=user.user_id order by projects.date desc";
 			return $this->exec($sql);
@@ -48,8 +49,9 @@ class itemClass extends database{
 			if(!isset($search)||empty($search)){
 				$search='%';
 			}
-			$sql="select * from projects,user where projects.user_id=user.user_id AND (projects.catagory like '$search%' OR projects.title like '%$search%' OR 
-			projects.description like '%$search%' OR user.firstname like '%$search%') ";
+			$sql="select * from projects,user where projects.user_id=user.user_id AND (projects.catagory like '$search%' OR 
+				projects.title like '%$search%' OR projects.description like '%$search%' OR user.firstname like '%$search%' OR 
+				user.lastname like '%$search%')";
 			return $this->exec($sql);
 		}
 
@@ -57,6 +59,7 @@ class itemClass extends database{
 			$sql="select * from user where username=$uname";
 			return $this->exec($sql);
 		}
+
 } //end of itemClass
 
 $item = new itemClass();

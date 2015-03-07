@@ -1,30 +1,10 @@
 <?php
 	include_once("class/classes.php");
-	$query=$item->viewall();
+	$search=$_GET['search'];
+	$query=$item->search($search);
 	$num=mysql_num_rows($query);
 	if($num>0){
 ?>
-
-<!-- pagination code -->
-<?php 
-
-	$num_rec_per_page=6;
-	$targetpage= "home.php";
-	if (isset($_GET["page"])) { 
-		$page  = $_GET["page"]; 
-	} 
-		else {
-		 $page=1; 
-	}; 
-
-	$start_from = ($page-1) * $num_rec_per_page; 
-
-	$sql = "select * from projects,user where projects.user_id=user.user_id order by projects.date desc LIMIT $start_from, $num_rec_per_page"; 
-	
-	$rs_result = mysql_query ($sql); //run the query
-	
-?>
-<!-- pagination code -->
 
 <html>
 <head>
@@ -51,7 +31,7 @@
 					<div class="title">
 						<h3> Project Courses </h3>
 					</div>
-				<ul class="list">
+					<ul class="list">
 						<li><a href="search.php?search=major"> Third year project (minor) </a> </li>
 						<li><a href="search.php?search=minor"> Final year project (major) </a> </li>
 						<li><a href="search.php?search=other"> Others </a> </li>
@@ -65,63 +45,37 @@
 						<li><a href="search.php?search=management"> Organization and management </a> </li>
 					</ul>
 				</div>
+
 			</div>
 			<div class="posts">
-
-				<?php 
-					while ($data = mysql_fetch_array($rs_result)) { 
-				?> 
-					       <div class="post">
+					<p align="right"> <b><?php echo $num. "&nbsp;Result Found &nbsp;&nbsp;&nbsp;&nbsp;"; ?></b> </p>
+					<?php
+						while($data=mysql_fetch_array($query)){
+					?>
+						<div class="post">
 							<div class="image">
-								<?php $imgName = $data['image']; ?>
+								<?PHP $imgName = $data['image']; ?>
    								<img src="up_image/<?PHP echo $imgName;?>" width="110px" height="100px">
 							</div>
 							<div class="ptitle">
-								<h2><a href="post.php?project_id=<?php echo $data['project_id']; ?>"> <?php echo $data['title']; ?> </a></h2>
-								<p> &bull;&nbsp;<a href="profile.php?user=<?php echo $data['username'] ?>"> <?php echo $data['firstname'];?>
-									&nbsp;<?php echo $data['lastname']; ?> </a>  
-									&bull;&nbsp;<?php echo $data['college']; ?>
-									&bull;&nbsp;<?php echo $data['date']; ?>
-								</p>
+								<h2><a href="post.php?project_id=<?PHP echo $data['project_id']; ?>"> <?php echo $data['title']; ?> </a></h2>
+								<p> &bull;&nbsp;<a href="#"> <?php echo $data['firstname'];?> <?php echo $data['lastname']; ?> </a>  
+									</br>&bull;&nbsp;<?php echo $data['college']; ?>
+									&bull;&nbsp;<?php echo $data['date']; ?></p>
 							</div>	
 						</div>
-				<?php 
-					}; 
-				?> 
+					<?php
+						}
+					?>
 
-				<!-- pagination code -->
-				<?php 
-					//	$sql = $item->viewall(); 
-					$rs_result = $item->viewall();  //run the query
-					include_once("include/pagination.php");
-				?>
-				<!-- pagination code -->
-
-				<!-- pagination navbar -->
-				<?=$pagination ?>
-				<!-- pagination navbar -->
-
-						<!--
-							echo "<div class='current'><a href='home.php?page=1'>".'|<'."</a> </div>"; // Goto 1st page  
-
-							for ($i=1; $i<=$total_pages; $i++) { 
-							            echo "<div class='current'><a href='home.php?page=".$i."'>".$i."</a> </div>"; 
-							}; 
-							echo "<div class='current'><a href='home.php?page=$total_pages'>".'>|'."</a></div> "; // Goto last page
-						?>
-						</div>
-						-->
-				
 					<?php
 
 						}
 						else{
-						
 							echo "NO items found";
-							
 						}
 					?>
-				</div>
+
 			</div>
 		</div>
 	</div>
@@ -133,4 +87,3 @@
 	<!--footer end -->
 </body>
 </html>
-
