@@ -1,3 +1,4 @@
+<?php include_once("class/classes.php");?>
 <html>
 	<head>
 		<title> Project Ocean </title>
@@ -6,12 +7,7 @@
 	<body>
 	<!--header start -->
 		<?php 
-		if(!isset($_POST['uname'])){
-			include("include/header.php"); 
-		}
-		else{
-			include("include/lheader.php");
-		}
+		include('include/menu.php');
 		?>
 	<!--header end -->
 
@@ -47,7 +43,7 @@
 					<div class="div2">
 		                <img src="image/trophy.gif" height="100" />
 		               <h4>College</h4>
-		               <p>Colleges can suggest <span>Project Ocean</span> to their students to enhance their learning capabilities and make them more practical by uploading and sharing their content. </p>
+		               <p>Colleges can suggest <span>Project Ocean</span> to their students to enhance their learning capabilities and make them more practical. </p>
 					</div>
 					<div class="div3">
 		                 <img src="image/league.png" height="100" />

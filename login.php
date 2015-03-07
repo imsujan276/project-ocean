@@ -1,32 +1,35 @@
 <!--User inactivity check --> 
 <?php 
-if (isset($_SESSION['username'])) {
+include('class/classes.php');
+if (isset($_SESSION['uname'])) {
   // only if user is logged in perform this check
-  if ((time() - $_SESSION['last_login_timestamp']) > 5) {
-    header("location:logout.php");
-    exit;
-  } else {
+  
     $_SESSION['last_login_timestamp'] = time();
     header('Location:home.php');
-  }
+	exit();
 }
 ?>
 
 <?php
 	if(isset($_POST['sbtn'])){
-		include('class/userClass.php');
+		
 		$uname=trim($_POST['uname']);
 		$pass=trim($_POST['pass']);
 		$query=$user->login($uname,$pass);
-		if($query){
+		if(mysql_num_rows($query)>0){
+			while($row=mysql_fetch_array($query)){
+				$_SESSION['user_id']=$row[0];
+				$_SESSION['uname']=$row[4];
+			}
 			$_SESSION["msg"] = "Registered successfully!! Please log in";
-			session_start();
-			$_SESSION['uname']="$uname";
 			header('Location:home.php');
 		}
 		else{
+			echo"<script type='text/javascript'>
+			alert('Incorrect Username or Password.<br/> Please check and enter again.');
+			</script>";
 			$_SESSION["msg"] = "<font color='red'><em>Email/Password are incorrect. Try again.</em></font>";
-			header('Location:login.php');
+			header('Location:login.php?act=incorrect username or password');
 		}
 	}
 ?>
@@ -71,12 +74,12 @@ if (isset($_SESSION['username'])) {
 										<td style="font-size: 17px;"> Password :</td>
 										<td> <input type="password" class="ltext" name="pass" placeholder="Password" value="" required> </td>
 									</tr> 
-								<!--	<tr>
+									<tr>
 										<td align=right><input type="checkbox" name="rem" value="" >
 										<td>Remember me &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											<a href="forgot.php">Forgot Password? </a>
 										</td>
-								-->	</tr>
+									</tr>
 									<tr>
 										<td colspan=2 align="right"> <input type="submit" class="btn" name="sbtn" value="Log In" ></td>
 								</table>

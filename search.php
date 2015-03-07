@@ -1,5 +1,5 @@
 <?php
-	include_once("class/itemClass.php");
+	include_once("class/classes.php");
 	$search=$_GET['search'];
 	$query=$item->search($search);
 	$num=mysql_num_rows($query);
@@ -13,12 +13,7 @@
 <body>
 	<!--header start -->
 		<?php 
-		if(isset($_SESSION['uname'])){
-			include("include/header.php"); 
-		}
-		else{
-			include("include/lheader.php");
-		}
+		include('include/menu.php');
 		?>
 	<!--header end -->
 
@@ -63,7 +58,7 @@
    								<img src="up_image/<?PHP echo $imgName;?>" width="110px" height="100px">
 							</div>
 							<div class="ptitle">
-								<h2><a href="post.php?project=<?PHP echo $data['project_id']; ?>"> <?php echo $data['title']; ?> </a></h2>
+								<h2><a href="post.php?project_id=<?PHP echo $data['project_id']; ?>"> <?php echo $data['title']; ?> </a></h2>
 								<p> &bull;&nbsp;<a href="#"> <?php echo $data['firstname'];?> <?php echo $data['lastname']; ?> </a>  
 									</br>&bull;&nbsp;<?php echo $data['college']; ?>
 									&bull;&nbsp;<?php echo $data['date']; ?></p>

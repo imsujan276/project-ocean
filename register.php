@@ -5,7 +5,7 @@ header('Location:home.php');
 	}
 ?>
 <?php
-	include_once("class/userClass.php");
+	include_once("class/classes.php");
 	if(isset($_POST['rbtn'])){
 		if(($_POST['pass'])===($_POST['cpass'])){
 			$fname=trim($_POST['fname']);
@@ -24,7 +24,8 @@ header('Location:home.php');
 			}
 		}
 	}
-?><!--
+?>
+<!--
 /*
 	if(isset($_POST['rbtn'])){
 		if(($_POST['pass'])===($_POST['cpass'])){
@@ -51,16 +52,9 @@ header('Location:home.php');
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script language="javascript" src="js/formvalid.js"> </script>
 </head>
-	<script type="text/javascript">
-		function signupvalidation(){
-			if(!(document.signup.cpass.value==document.signup.pass.value)){
-			alert('Password Not Matched');
-			document.form1.pass.focus();
-			}
-		}
-	</script>
-</head>
+
 <body>
 	<!--header start -->
 		<?php 
@@ -83,7 +77,20 @@ header('Location:home.php');
 							<strong> Register</strong>
 						</div>
 						<div class="form">
-							<form name="signup" method="post" action="" onsubmit="signupvalidation();">
+							<form name="signup" method="post" action="" 
+							onsubmit=" if(submitting) { 
+								alert('The form is being submitted, please wait a moment...'); 
+								rbtn.disabled = true; 
+								return false; 
+							} 
+							else if(checkForm(this)) { 
+								rbtn.value = 'Registering form...'; 
+								submitting = true; 
+								return true; 
+							} 
+							else { 
+							return false; 
+							} ">
 								<table cellspacing=5>
 									<tr>
 										<td> </td>
@@ -103,18 +110,24 @@ header('Location:home.php');
 									</tr> 
 									<tr>
 										<td style="font-size: 17px;"> Username :</td>
-										<td> <input type="text" class="ltext" name="uname" placeholder="Username" value="" required> </td>
+										<td> <input type="text" class="ltext" name="uname" placeholder="Username" value="" required
+											title="Username must not be blank and contain only letters, numbers and underscores." pattern="\w+"> </td>
 									</tr> 
 									<tr>
 										<td style="font-size: 17px;"> Password :</td>
-										<td> <input type="password" class="ltext" name="pass" placeholder="Password" value="" required> </td>
+										<td> <input type="password" class="ltext" name="pass" placeholder="Password" value="" required
+											 title="Password must contain at least 6 characters, including UPPER/lowercase and numbers." pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"> </td>
 									</tr> 
 									<tr>
 										<td style="font-size: 17px;"> Confirm password :</td>
-										<td> <input type="password" class="ltext" name="cpass" placeholder="Confirm Password" value="" required> </td>
+										<td> <input type="password" class="ltext" name="cpass" placeholder="Confirm Password" value="" required
+											title="Please enter the same Password as above." pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"> </td>
 									</tr>
 									<tr>
-										<td colspan=2 align="right"> <input type="submit" class="btn" name="rbtn" value="Register" ></td>
+										<td colspan=2 align="right"> <input type="submit" class="btn" name="rbtn" value="Register" > <input class="btn" type="button" value="Reset" onclick=" resetForm(this.form); "></td>
+									</tr> 
+									<tr>
+										<td colspan=2 align="right"></td>
 									</tr> 
 									<tr>
 										<td colspan=2 style="font-size: 17px;"> Already have n account? <a href="login.php">Log In</a></td>

@@ -1,14 +1,11 @@
 
 <?php
-	include_once("class/itemClass.php");
+	include_once("class/classes.php");
 	if(isset($_POST['upbtn'])){
 			$ptitle=trim($_POST['ptitle']);
 			$description=trim($_POST['description']);
 			$catagory=trim($_POST['catagory']);
 			$filelink=trim($_POST['filelink']);
-
-			$user_id=$_SESSION['user_id'];
-			$item->setuser_id($user_id);
 
 			$image= "SG"."_".rand(0,9999)."_".$_FILES["image"]["name"];
 			if($_FILES["image"]["size"]>1024)
@@ -25,7 +22,7 @@
 			$query=$item->submit($ptitle,$description,$catagory,$image,$mainfile,$filelink);
 			if($query){
 				echo"Registered successfully!!";
-				header('Location:post.php?act=successful&project_id');
+				header('Location:post.php?project_id='.$item->lastID());
 			}
 			else{
 				echo"Something went wrong... Try again ";
@@ -41,12 +38,7 @@
 <body>
 	<!--header start -->
 		<?php 
-		if(isset($_SESSION['uname'])){
-			include("include/header.php"); 
-		}
-		else{
-			include("include/lheader.php");
-		}
+		include('include/menu.php');
 		?>
 	<!--header end -->
 

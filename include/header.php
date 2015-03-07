@@ -12,7 +12,7 @@
 							<li class="smooth"><a href="#about">ABOUT US</a></li>
 							<li><a href="login.php">LOG IN</a></li>
 							<li><a href="register.php">REGISTER</a></li>
-							<li><a href="#">CONTACT US</a></li>
+							<li><a href="contact.php">CONTACT US</a></li>
 						</ul>
 					</div>
 				</div>

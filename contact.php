@@ -1,3 +1,4 @@
+<?php include_once("class/classes.php");?>
 <html>
 <head>
 	<title> Project Ocean | Contact Us </title>
@@ -6,12 +7,7 @@
 <body>
 	<!--header start -->
 		<?php 
-		if(isset($_SESSION['uname'])){
-			include("include/header.php"); 
-		}
-		else{
-			include("include/lheader.php");
-		}
+		include('include/menu.php');
 		?>
 	<!--header end -->
 

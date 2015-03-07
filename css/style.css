@@ -8,8 +8,8 @@ hr{
 	border-color: lightgrey;
 }
 
-.smooth{
-	transition:;
+.selected{
+	background-color: #ff0;
 }
 .clear
 {
@@ -81,6 +81,7 @@ select, option{
 	background-color: #FFF;
 	border: 2px solid #CCC;
 	border-radius: 15px 0 15px 0;
+	outline: 0px;
 }
 		.ltext:focus{
 			background-color: #d9E9d9;
@@ -90,7 +91,7 @@ select, option{
 
 .dtext{
 	display: block;
-	
+	outline: 0px;
 	height: 84px;
 	padding: 10px 12px;
 	font-size: 14px;
@@ -127,23 +128,24 @@ select, option{
 
 /*header started*/
 .header{
-	height:90px;
+	height:70px;
 	background-color: #333;
+	padding:5px;
+	-webkit-padding:5px;
 }
 		.header .title{
 			color: lightgrey;
 			float:left;
 			width:400px;
 			font-size: 30px;
-			padding:10px 0;
-			
 		}
 		.header .nav{
 				text-align: right;
 				width:750px;
+				padding:9px;
+				-webkit-padding:9px;
 				float:left;
 				font-family:Arial, Helvetica, sans-serif;
-				padding:15px 0;
 				color: lightgrey;
 				font-size: 15px;
 			}
@@ -312,6 +314,38 @@ select, option{
 				}
 /* Content ended */
 
+/*profile content started */
+.lcontent .scontent{
+	margin:20px 20px 10px 10px;
+	margin-left: 100px;
+	background-color: #bbb;
+	border-radius: 30px 0 30px 0;
+	width:950px;
+}
+		.scontent .project{
+			width:460px;
+			border-radius: 30px 0 30px 0;
+			background-color: #aaa;
+			float:left;
+			margin:5px;
+			height:300px;
+		}
+				.scontent .project .title{
+					text-align: center;
+					font-size: 20px;
+					padding:15px 0;
+					background-color: #999;
+					border-radius: 30px 0 30px 0;
+				}
+				.scontent .project a{
+					color:#333;
+				}
+						.scontent .project a:hover{
+							color:#744;
+						}
+
+/*profile content ended */
+
 /*  left sidebar started */
 .left-sidebar{
 	margin:20px 0px 10px 50px;
@@ -386,7 +420,7 @@ select, option{
 	float:left;
 	border: 1px solid #000;
 	width:830px;
-	height:950px;
+	height:1050px;
 	background-color: #ccc;
 	border-radius: 53px 0 53px 0;
 	
@@ -409,11 +443,6 @@ select, option{
 			margin:20px 20px 20px 30px;
 			text-align: justify;
 		}
-				.ppost .pbody .pimage img{
-					margin:5px;
-					width:750px;
-					padding-left:30px;
-				}
 				.ppost .pbody .pcontent{
 					margin-right:5px;
 					width:750px;
@@ -512,11 +541,11 @@ select, option{
 
 /*register css started */
 		.lcontent .rdiv{
-			padding: 35px 350px;
+			padding: 30px 350px;
 		}
 
 				.lcontent .rdiv .rform{
-					height:430px;
+					height:450px;
 					background-color: #fff;
 					width: 500px;
 					border: 2px solid #000;
@@ -542,6 +571,7 @@ select, option{
 	background-color: #444;
 	color:lightgrey;
 	padding: 20px 0;
+	position:static;
 }
 		.subfooter .about{
 			width:300px;
@@ -555,9 +585,9 @@ select, option{
 
 		.subfooter .social{
 			width: 150px;
-			padding-left: 100px;
 			float: left;
 			text-align: justify;
+			margin-left:140px;
 		}
 				.subfooter .social ul li{
 					padding:5px;
@@ -567,10 +597,21 @@ select, option{
 				}
 				
 		.subfooter .recent_upload{
-			width:480px;
+			width:400px;
 			float: left;
-			padding-left: 100px;
+			margin-left: 140px;
+			text-align: justify;
 		}
+				.subfooter .recent_upload .recent a{
+					color:#aaa;
+					font-size: 18px;
+					text-align: justify;
+					
+				}
+								.subfooter .recent_upload .recent a:hover{
+									color:#0aa;
+									text-decoration: none;
+								}
 
 .mainfooter{
 	padding:15px 0;
@@ -578,6 +619,7 @@ select, option{
 	background-color: #333;
 	text-align: center;
 	color:lightgrey;
+	position:static;
 }
 /*footer ended */
 

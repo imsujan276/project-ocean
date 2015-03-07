@@ -1,7 +1,7 @@
 <?php
-include('database.php');
 
-class userClass extends database{
+
+class userClass{
 
 	public function exec($sql){
 		if(empty($sql)){
@@ -31,16 +31,23 @@ class userClass extends database{
 		}
 	}
 
+	public function profile($uname){
+		$sql="select * from user where username=$uname";
+		return $this->exec($sql);
+	}
+
 	public function profileupdate($fname,$lname,$email,$uname,$pass,$profilepic,$country,$city,$education,$college,$aboutme){
 			$sql = "insert into user set firstname='$fname',lastname='$lname',email='$email',username='$uname',
-			password='".md5($pass)."',profilepic='$profilepic',aboutme='$aboutme',country='$country',city='$city',education='$education',college='$college'";
+			password='".md5($pass)."',profilepic='$profilepic',aboutme='$aboutme',country='$country',city='$city',
+			education='$education',college='$college'";
 			return $this->exec($sql);
 	}
 
 
+	
 }	//end of userClass
 
-$user = new userClass;
+$user = new userClass();
 
 ?>
 

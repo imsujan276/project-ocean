@@ -1,8 +1,8 @@
 <?php
-	include_once("class/itemClass.php");
-	$id=$_GET['project'];
+	include_once("class/classes.php");
+	$id=$_GET['project_id'];
 	$query=$item->viewpost($id);
-	$dat=$item->viewall();
+	$dat=$item->viewrecent();
 ?>
 
 
@@ -13,12 +13,7 @@
 <body>
 	<!--header start -->
 		<?php 
-		if(isset($_SESSION['uname'])){
-			include("include/header.php"); 
-		}
-		else{
-			include("include/lheader.php");
-		}
+		include('include/menu.php');
 		?>
 	<!--header end -->
 
@@ -34,24 +29,22 @@
 	<div class="wrapper">
 		<div class="ppost">
 			<div class="ptitle">
-				<h2><a href="#"> <?php echo $query['title']; ?> </a></h2>
-				<p> &bull;&nbsp;<a href="#"><?php echo $query['firstname'];?> <?php echo $query['lastname']; ?> </a> </p>
+				<h2> <?php echo $query['title']; ?></h2>
+				<p> &bull;&nbsp;<a href="profile.php?<?php echo $query['user_id']; ?>"><?php echo $query['firstname'];?> <?php echo $query['lastname']; ?> </a> </p>
 			</div>
 			<div class="pbody">
 				<div class="pcontent">
-						<p>	<?php echo $query['description']; ?></p>
-				</div>
-				<br/>
-				<div class="image">
-						<center>
-							<?PHP $imgName = $query['image']; ?>
-   							<img src="up_image/<?PHP echo $imgName;?>" width="110px" height="100px">
-						</center>
+					<table width=100% cellspacing=5>
+						<tr>
+							<td> <?PHP $imgName = $query['image']; ?> <img src="up_image/<?PHP echo $imgName;?>" width="150px" height="200px"> </td>
+							<td> <p>	<?php echo $query['description']; ?> </p> </td>
+						</tr>
+					</table>
 				</div>
 			</div>
 			<div class="files">
 				<?PHP $fileName = $query['mainfile']; ?>
-				<a class="btn" href="up_image/<?PHP echo $fileName;?>">Main Report</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a class="btn" href="up_file/<?PHP echo $query['$fileName'];?>">Main Report</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<a class="btn" href="<?PHP echo $query['filelink']; ?>"> Link to report/file</a>
 			</div>
 			<hr/>
@@ -74,7 +67,7 @@
 				?>
 			<div class="ptitle">
 				
-				<p><a href="post.php?project=<?PHP echo $data['project_id']; ?>">&bull;&nbsp;<?php echo $data['title']; ?></a></p>
+				<p><a href="post.php?project_id=<?PHP echo $data['project_id']; ?>">&bull;&nbsp;<?php echo $data['title']; ?></a></p>
 				
 			</div>	
 			
@@ -83,6 +76,7 @@
 				?>
 		</div>
 	</div>
+</div>
 	 <!--content end -->
     <!--footer start -->
     <?php

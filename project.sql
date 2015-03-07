@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 28, 2015 at 11:33 AM
+-- Generation Time: Mar 06, 2015 at 07:20 AM
 -- Server version: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS `projects` (
   `image` varchar(255) NOT NULL,
   `mainfile` varchar(255) NOT NULL,
   `filelink` varchar(255) NOT NULL,
-  `user_id` bigint(4) NOT NULL,
+  `user_id` int(4) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
@@ -57,9 +57,11 @@ CREATE TABLE IF NOT EXISTS `projects` (
 --
 
 INSERT INTO `projects` (`project_id`, `title`, `description`, `catagory`, `image`, `mainfile`, `filelink`, `user_id`, `date`) VALUES
-(1, 'demo title', 'demo description', 'other', 'SG_1600_Screenshot (25).png', 'SuGa_3829_Screenshot (24).png', 'demo.link', 0, '2015-02-25 08:00:09'),
-(4, 'student info system', 'student info system student info system student info system student info system student info system student info system student info system student info system student info system student info system student info system student info system student info system', 'other', 'SG_9153_Jellyfish.jpg', 'SuGa_1303_Penguins.jpg', 'asd', 0, '2015-02-25 11:49:22'),
-(10, 'asdasd', 'asdasdasd', 'other', 'SG_4533_Screenshot (32).png', 'SuGa_2816_Screenshot (4).png', '', 0, '2015-02-25 12:15:15');
+(13, 'demo', 'demo demo demo demo demo demo demo demo demo demodemo demo demo demo demo', 'major', 'SG_2695_Screenshot (39).png', 'SuGa_9810_Screenshot (35).png', 'aaa', 4, '2015-03-02 06:37:36'),
+(14, 'demo 2', 'demo 2 demo 2 demo 2 demo 2 demo 2 demo 2 demo 2 demo 2 demo 2 demo 2 demo 2 demo 2 demo 2 demo 2 demo 2 demo 2 demo 2 demo 2 demo 2 demo 2 demo 2 demo 2 demo 2 demo 2 demo 2 demo 2 demo 2 demo 2', 'other', 'SG_3142_Screenshot (5).png', 'SuGa_9759_Screenshot (35).png', '', 4, '2015-03-02 06:51:25'),
+(15, 'demo 3', 'demo 3 demo 3 demo 3 demo 3 demo 3 demo 3 demo 3 demo 3 demo 3 demo 3 demo 3 demo 3 demo 3 demo 3 demo 3 demo 3 demo 3 demo 3 demo 3 demo 3 demo 3 demo 3 demo 3', 'minor', 'SG_6330_Screenshot (30).png', 'SuGa_6422_Screenshot (35).png', 'facebook.com', 6, '2015-03-02 07:02:16'),
+(16, 'The Student Information System in C', 'The Student Information System in C The Student Information System in C The Student Information System in C The Student Information System in C', 'c', 'SG_4089_Screenshot (25).png', 'SuGa_8011_Screenshot (36).png', '', 6, '2015-03-02 09:47:26'),
+(17, 'addd', 'lakhdn kakhsd ahsd asdh', 'other', 'SG_9576_Screenshot (6).png', 'SuGa_3344_Screenshot (40).png', '.j', 4, '2015-03-06 06:18:24');
 
 -- --------------------------------------------------------
 
@@ -75,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `username` varchar(225) NOT NULL,
   `password` varchar(225) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `user`
@@ -83,7 +85,9 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 INSERT INTO `user` (`user_id`, `firstname`, `lastname`, `email`, `username`, `password`, `date`) VALUES
 (4, 'Sujan', 'Gainju', 'imsujan276@gmail.com', 'imsujan276', '7c317006772feabda0d5623317f7fea1', '2015-02-23 13:45:23'),
-(5, 'zarin', 'ekith', 'zarin@gmail.com', 'zarin_ekith', 'cf0ab4cf8ac0e1f585f496ed1ebdb6e0', '2015-02-24 09:59:56');
+(5, 'zarin', 'ekith', 'zarin@gmail.com', 'zarin_ekith', 'cf0ab4cf8ac0e1f585f496ed1ebdb6e0', '2015-02-24 09:59:56'),
+(6, 'suresh', 'gainju', 'dboysuresh@gmail.com', 'imsuresh23', 'c2da3a63074a4a0d207402ff831262a1', '2015-03-02 07:01:23'),
+(9, 'su', 'su', 'abc@abc.com', 'sujan276', 'ac4e0e3b8a02976a3ee82ab7b7de7745', '2015-03-05 09:43:37');
 
 --
 -- Indexes for dumped tables
@@ -105,7 +109,7 @@ ALTER TABLE `projects`
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
- ADD PRIMARY KEY (`user_id`,`email`,`username`);
+ ADD PRIMARY KEY (`user_id`,`email`,`username`), ADD UNIQUE KEY `email` (`email`), ADD UNIQUE KEY `email_2` (`email`,`username`), ADD UNIQUE KEY `email_3` (`email`,`username`), ADD UNIQUE KEY `email_4` (`email`,`username`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -125,7 +129,7 @@ MODIFY `project_id` int(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-MODIFY `user_id` int(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+MODIFY `user_id` int(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- Constraints for dumped tables
 --

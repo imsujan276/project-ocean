@@ -1,4 +1,7 @@
-
+<?php
+	include_once("class/itemClass.php");
+	$query=$item->viewfooter();
+?>
 <footer>
         	<div class="subfooter">
 				<div class="wrapper">
@@ -18,8 +21,16 @@
 						</ul>
 					</div>
 					<div class="recent_upload">
-						<h3 align="center">RECENT UPLOADS</h3>
-
+						<h3 >RECENT UPLOADS</h3></br>
+						<?php
+							while($data=mysql_fetch_array($query)){
+						?>
+						<div class="recent">
+							<a href="post.php?project_id=<?PHP echo $data['project_id']; ?>">&nbsp;<?php echo $data['title']; ?></a>
+						</div>	
+						<?php
+							}
+						?>
 					</div>
 				</div>
 			</div>
