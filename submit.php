@@ -6,21 +6,20 @@
 			$description=trim($_POST['description']);
 			$catagory=trim($_POST['catagory']);
 			$filelink=trim($_POST['filelink']);
-
 			$image= "SG"."_".rand(0,9999)."_".$_FILES["image"]["name"];
-			if($_FILES["image"]["size"]>1024)
-			{
-				move_uploaded_file($_FILES["image"]["tmp_name"],"up_image/".$image);	
-			}
-
 			$mainfile= "SuGa"."_".rand(0,9999)."_".$_FILES["mainfile"]["name"];
-			if($_FILES["mainfile"]["size"]>1024)
-			{
-				move_uploaded_file($_FILES["mainfile"]["tmp_name"],"up_file/".$mainfile);	
-			}
-
+			
 			$query=$item->submit($ptitle,$description,$catagory,$image,$mainfile,$filelink);
+			
 			if($query){
+				if($_FILES["image"]["size"]>1024)
+				{
+					move_uploaded_file($_FILES["image"]["tmp_name"],"up_image/".$image);	
+				}
+				if($_FILES["mainfile"]["size"]>1024)
+				{
+					move_uploaded_file($_FILES["mainfile"]["tmp_name"],"up_file/".$mainfile);	
+				}
 				echo"Registered successfully!!";
 				header('Location:post.php?project_id='.$item->lastID());
 			}

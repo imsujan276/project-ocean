@@ -1,5 +1,99 @@
 /*CSS Document */
 
+/* Animation CSS for images*/
+	 /* WebKit and Opera browsers */ 
+	 @-webkit-keyframes spinner { 
+	 	from { -webkit-transform: rotateY(0deg); } 
+	 	to { -webkit-transform: rotateY(-360deg); } 
+	 } 
+	 /* all other browsers */ 
+	 @keyframes spinner { 
+	 	from { -moz-transform: rotateY(0deg); 
+	 		-ms-transform: rotateY(0deg); 
+	 		transform: rotateY(0deg); 
+	 		} 
+	 	to { -moz-transform: rotateY(-360deg); 
+	 		-ms-transform: rotateY(-360deg); 
+	 		transform: rotateY(-360deg); 
+	 		} 
+	 }
+
+	  #t1 { 
+	  	-webkit-transition: 1s ease-in-out; 
+	  	-moz-transition: 1s ease-in-out; 
+	  	-o-transition: 1s ease-in-out; 
+	  	transition: 1s ease-in-out; 
+	  } 
+	  #image:hover + #t1 { 
+	  	-webkit-transform: rotate(360deg); 
+	  	-moz-transform: rotate(360deg); 
+	  	-o-transform: rotate(360deg); 
+	  	-ms-transform: rotate(360deg); 
+	  	transform: rotate(360deg); 
+	  	left: calc(100% - 102px); 
+	  	background: lightyellow; 
+	 }
+ #stage { 
+ 	margin: 0.1em auto; 
+ 	-webkit-perspective: 1200px; 
+ 	-moz-perspective: 1200px; 
+ 	-ms-perspective: 1200px; 
+ 	perspective: 1200px; 
+ }
+  #spinner { 
+  	-webkit-animation-name: spinner; 
+  	-webkit-animation-timing-function: linear; 
+  	-webkit-animation-iteration-count: infinite; 
+  	-webkit-animation-duration: 6s;
+  	animation-name: spinner; 
+  	/* animation-timing-function: linear; */
+  	animation-timing-function: 1s ease-in-out;
+  	animation-iteration-count: infinite; 
+  	animation-duration: 6s; 
+  	-webkit-transform-style: preserve-3d; 
+  	-moz-transform-style: preserve-3d; 
+  	-ms-transform-style: preserve-3d; 
+  	transform-style: preserve-3d; 
+  } 
+  #spinner:hover { 
+  	-webkit-animation-play-state: paused; 
+  	animation-play-state: paused; 
+  }
+
+.image{
+	
+	 -webkit-transition: 1s ease-in-out; 
+	 -moz-transition: 1s ease-in-out; 
+	 -o-transition: 1s ease-in-out; 
+	 transition: 1s ease-in-out;
+}
+	.image:hover{
+		 transform:  scale(1.5);
+		 : 5px;
+	}
+.img{
+	border-radius: 5px;
+	 -webkit-transition: 1s ease-in-out; 
+	 -moz-transition: 1s ease-in-out; 
+	 -o-transition: 1s ease-in-out; 
+	 transition: 1s ease-in-out;
+}
+	.img:hover{
+		 transform: translate(10em,0) scale(3) rotate(360deg);
+
+	}
+.himg{
+	 -webkit-transition: 1s ease-in-out; 
+	 -moz-transition: 1s ease-in-out; 
+	 -o-transition: 1s ease-in-out; 
+	 transition: 1s ease-in-out;
+}
+	.himg:hover{
+		transform: translate(3em,0);
+		transform: scale(1.5);
+	}
+/* Animation CSS for images ended*/
+
 *{
 	margin:0px;
 	padding:0px;
@@ -660,3 +754,25 @@ div.pagination span.current {
 		color: #DDD;
 	}
 /* Pagination bar css ended */
+
+ .showbox { 
+ 	float: left; 
+ 	margin: 4em 1em; 
+ 	width: 100px; 
+ 	height: 60px; 
+ 	border: 2px solid green; 
+ 	background-color: #fff; 
+ 	line-height: 60px; 
+ 	text-align: center; 
+ 	-webkit-transition: 1s ease-in-out; 
+ 	-moz-transition: 1s ease-in-out; 
+ 	-o-transition: 1s ease-in-out; 
+ 	transition: 1s ease-in-out; 
+ 	} 
+ .showbox.slideright:hover { 
+ 	-webkit-transform: translate(3em,0);
+ 	 -moz-transform: translate(3em,0); 
+ 	 -o-transform: translate(3em,0); 
+ 	 -ms-transform: translate(3em,0); 
+ 	 transform: translate(3em,0); 
+ 	}

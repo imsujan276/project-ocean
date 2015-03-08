@@ -13,10 +13,10 @@
 					<div class="social">
 						<h3 align="center">FOLLOW US</h3>
 						<ul class="list">
-							<li><a href="#"> <img src="image/facebook.png" width="15px">Facebook</a></li>
-							<li><a href="#"><img src="image/twitter.png" width="15px">Twitter</a></li>
-							<li><a href="#"><img src="image/google.png" width="15px">Google +</a></li>
-							<li><a href="#"><img src="image/pinterest.png" width="15px">Pinterest</a></li>
+							<li><a href="#"> <img class="himg" src="image/facebook.png" width="15px">Facebook</a></li>
+							<li><a href="#"><img class="himg"  src="image/twitter.png" width="15px">Twitter</a></li>
+							<li><a href="#"><img class="himg"  src="image/google.png" width="15px">Google +</a></li>
+							<li><a href="#"><img class="himg"  src="image/pinterest.png" width="15px">Pinterest</a></li>
 							
 						</ul>
 					</div>
@@ -40,3 +40,5 @@
 				</div>
 			</div>
 		</footer>
+	<script src="lib/sweet-alert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="lib/sweet-alert.css">

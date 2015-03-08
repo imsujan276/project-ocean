@@ -31,10 +31,11 @@ class userClass{
 		}
 	}
 
-	public function profile($uname){
-		$sql="select * from user where username=$uname";
+	public function profile($user_id){
+		$sql="select * from user where user_id='$user_id'";
 		return $this->exec($sql);
 	}
+	
 
 	public function profileupdate($fname,$lname,$email,$uname,$pass,$profilepic,$country,$city,$education,$college,$aboutme){
 			$sql = "insert into user set firstname='$fname',lastname='$lname',email='$email',username='$uname',
@@ -44,7 +45,6 @@ class userClass{
 	}
 
 
-	
 }	//end of userClass
 
 $user = new userClass();

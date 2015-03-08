@@ -10,7 +10,6 @@
 <?php 
 
 	include_once("class/itemClass.php");
-
 	$num_rec_per_page=6;
 	$targetpage= "search.php";
 	if (isset($_GET["page"])) { 
@@ -27,7 +26,6 @@
 	$sql="select * from projects,user where projects.user_id=user.user_id AND (projects.catagory like '$search%' OR projects.title like '%$search%' OR projects.description like '%$search%' OR user.firstname like '%$search%' OR user.lastname like '%$search%') order by projects.date desc LIMIT $start_from, $num_rec_per_page";
 	
 	$rs_result = mysql_query ($sql); //run the query
-	
 ?>
 <!-- pagination code -->
 
@@ -95,7 +93,7 @@
 				?>
 				<!-- pagination code -->
 				<?php 
-					$search=$_GET['search'];
+					
 					$rs_result=$item->search($search);
 					include_once("include/pagination.php");
 				?>

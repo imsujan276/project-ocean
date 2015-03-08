@@ -3,7 +3,7 @@
 			<div class="header">
 				<div class="wrapper">`
 					<div class="title">
-						<a href="index.php"><img src="image/Logo.png" width=300px height=70px></a>
+						<a href="index.php"><img class="himg" src="image/Logo.png" width=300px height=70px></a>
 							
 					</div>
 					<div class="nav">

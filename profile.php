@@ -1,14 +1,19 @@
 <?php 
 	include_once("class/classes.php");
-	$uname=$_GET['user'];
-	$query=$user->profile($uname);
-	$post=$item->viewallmy($uname);
+	$user_id=$_GET['user_id'];
+
+	$query=$user->profile($user_id);
+	$query=mysql_fetch_array($query);
+
+	$post=$item->viewallmy($user_id);
+
+	$comment=$item->viewcomment($user_id);
 	
 ?>
 
 <html>
 <head>
-	<title> Project Ocean | <?php echo $uname; ?></title>
+	<title> Project Ocean | <?php echo $query['username']; ?></title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
@@ -33,20 +38,20 @@
 						<td rowspan=5> <img src="#" width=150 height=150 alt="Profile picture"></td>
 					</tr>
 					<tr>
-						<td> <?php echo $query['firstname']; ?><?php echo $query['lastname']; ?></td> 
-						<td> Nepal </td>
+						<td><b> <?php echo $query['firstname']; ?>&nbsp;<?php echo $query['lastname']; ?> </b></td> 
+						<td><font size=2px> Nepal </font></td>
 					</tr>
 					<tr>
-						<td> Username :</td> 
-						<td> <?php echo $query['uname']; ?> </td>
+						<td><b> Username :</b></td> 
+						<td><b> <?php echo $query['username']; ?> </b></td>
 					</tr>
 					<tr>
-						<td> College :</td> 
-						<td> Khwopa Engineering College </td>
+						<td><b> College :</b></td> 
+						<td><b> Khwopa Engineering College </b></td>
 					</tr>
 					<tr>
-						<td> Educatiom :</td> 
-						<td> B.E. Computer </td>
+						<td><b> Educatiom :</b></td> 
+						<td><b> B.E. Computer</b> </td>
 					</tr>
 				</table>
 				<div class="project">
@@ -60,11 +65,10 @@
 							while($data=mysql_fetch_array($post)){
 						?>
 						<tr>
-							<td><a href="index.php?project_id=<?PHP echo $data['id']; ?>"><?PHP echo $data['title']; ?> </a></td>
-							<td><a href="index.php?project_id=<?PHP echo $data['id']; ?>"> view </a></td>
-							<td><a href="index.php?project_id=<?PHP echo $data['id']; ?>"> edit </a></td>
-							<td><a href="index.php?project_id=<?PHP echo $data['id']; ?>">
-								onClick="return confirm('Are u sure to delete Record ? ')""> delete </a></td>
+							<td width=70%><b><a href="post.php?project_id=<?PHP echo $data['project_id']; ?>"><?PHP echo $data['title']; ?> </b></a></td>
+							<td width=10%><a href="post.php?project_id=<?PHP echo $data['project_id']; ?>"> view </a></td>
+							<td width=10%><a href="editpost.php?project_id=<?PHP echo $data['project_id']; ?>"> edit </a></td>
+							<td width=10%><a href="deletepost.php?project_id=<?PHP echo $data['project_id']; ?>" onClick="return confirm('Are u sure to delete Record ? ')"> delete </a></td>
 						</tr>
 					<?php
 						}
@@ -79,7 +83,7 @@
 					</div>
 					<table cellspacing=5 cellpadding=5 width=100%>
 						<tr>
-							<td>Demo Comment on <a href="#">Demo Post </a> </td>
+							<td><b><?php echo $comment['comment']; ?></b> on <b><a href="post.php?<?php echo $comment['project_id']; ?>"><?php echo $comment['title']; ?> </a></b> </td>
 						</tr>
 					</table>
 				</div>

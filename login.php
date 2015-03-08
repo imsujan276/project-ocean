@@ -21,7 +21,6 @@ if (isset($_SESSION['uname'])) {
 				$_SESSION['user_id']=$row[0];
 				$_SESSION['uname']=$row[4];
 			}
-			$_SESSION["msg"] = "Registered successfully!! Please log in";
 			header('Location:home.php');
 		}
 		else{

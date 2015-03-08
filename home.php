@@ -42,6 +42,12 @@
 			include("include/search_bar.php");
 		?> 
 	<!--search end -->
+	<div class="wrapper">
+		<div id="stage" style="background: rgba(0,0,0,0.5);"> 
+			<p id="spinner" style="background: rgba(0,0,0,0.5); text-align: center; color: #fff;">Stop, I'm getting dizzy!</p> 
+		</div>
+	</div>
+
 
 	<!--content start -->
 	<div class="content">
@@ -72,13 +78,15 @@
 					while ($data = mysql_fetch_array($rs_result)) { 
 				?> 
 					       <div class="post">
-							<div class="image">
+							<div class="image" id="image" >
 								<?php $imgName = $data['image']; ?>
-   								<img src="up_image/<?PHP echo $imgName;?>" width="110px" height="100px">
+								<a href="post.php?project_id=<?php echo $data['project_id']; ?>">
+   								<img class="image"src="up_image/<?PHP echo $imgName;?>" width="100px" height="100px" title="<?php echo $data['title'];?>">
+   								</a>
 							</div>
-							<div class="ptitle">
-								<h2><a href="post.php?project_id=<?php echo $data['project_id']; ?>"> <?php echo $data['title']; ?> </a></h2>
-								<p> &bull;&nbsp;<a href="profile.php?user=<?php echo $data['username'] ?>"> <?php echo $data['firstname'];?>
+							<div class="ptitle" id="t1">
+								<h2><a  href="post.php?project_id=<?php echo $data['project_id']; ?>"> &nbsp;<?php echo $data['title']; ?> </a></h2>
+								<p> &bull;&nbsp;<a href="profile.php?user_id=<?php echo $data['user_id'] ?>"> <?php echo $data['firstname'];?>
 									&nbsp;<?php echo $data['lastname']; ?> </a>  
 									&bull;&nbsp;<?php echo $data['college']; ?>
 									&bull;&nbsp;<?php echo $data['date']; ?>

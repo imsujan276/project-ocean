@@ -23,7 +23,7 @@
 			 </script>";
 		  //	header("location:contact.php?error_occured");
 		}
-	/* <!--
+	
 		$to  = 'imsujan276@gmail.com'; // note the comma
 
 		// subject
@@ -53,7 +53,7 @@
 		  	</script>";
 		  	header("location:contact.php?error_occured");
 		}
--->	*/
+
 	}
 ?>
 
@@ -95,7 +95,7 @@
 									</tr> 
 									<tr>
 										<td style="font-size: 17px;">Contact :</td>
-										<td> <input type="tel" class="ltext" name="contact" placeholder="Contact Number (optional)" value=""> </td>
+										<td> <input type="number" class="ltext" name="contact" placeholder="Contact Number (optional)" value=""> </td>
 									</tr> 
 									<tr>
 										<td style="font-size: 17px;">Email<span>*</span> :</td>
@@ -103,7 +103,7 @@
 									</tr> 
 									<tr>
 										<td style="font-size: 17px;">Message<span>*</span> :</td>
-										<td> <textarea cols=35 rows=8 class="dtext" name="message" placeholder="message" value="" required></textarea> </td>
+										<td> <textarea cols=35 rows=6 class="dtext" name="message" placeholder="message" value="" required></textarea> </td>
 									</tr> 	
 									<tr>
 										<td colspan=2> <span>*</span> Required Fields </td>
