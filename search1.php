@@ -7,7 +7,8 @@
 ?>
 
 <html>
-<head>
+<head><link rel="icon" href="profile_image/Project.png" type="image/gif" sizes="16x16">
+	<title> Project Ocean | Search <?php echo $search; ?></title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>

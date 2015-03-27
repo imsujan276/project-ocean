@@ -37,13 +37,17 @@ class userClass{
 	}
 	
 
-	public function profileupdate($fname,$lname,$email,$uname,$pass,$profilepic,$country,$city,$education,$college,$aboutme){
-			$sql = "insert into user set firstname='$fname',lastname='$lname',email='$email',username='$uname',
-			password='".md5($pass)."',profilepic='$profilepic',aboutme='$aboutme',country='$country',city='$city',
-			education='$education',college='$college'";
+	public function profileupdate($fname,$lname,$email,$pass,$profilepic,$country,$city,$college){
+			$sql = "update user set firstname='$fname',lastname='$lname',email='$email',password='".md5($pass)."',
+			profilepic='$profilepic',country='$country',city='$city',college='$college'";
 			return $this->exec($sql);
 	}
 
+	public function profileupdate1($fname,$lname,$email,$profilepic,$country,$city,$college){
+			$sql = "update user set firstname='$fname',lastname='$lname',email='$email',profilepic='$profilepic',
+			country='$country',city='$city',college='$college'";
+			return $this->exec($sql);
+	}
 
 }	//end of userClass
 

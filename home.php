@@ -28,6 +28,8 @@
 
 <html>
 <head>
+	<link rel="icon" href="profile_image/Project.png" type="image/gif" sizes="16x16">
+	<title> Project Ocean | Home</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
@@ -42,13 +44,6 @@
 			include("include/search_bar.php");
 		?> 
 	<!--search end -->
-	<div class="wrapper">
-		<div id="stage" style="background: rgba(0,0,0,0.5);"> 
-			<p id="spinner" style="background: rgba(0,0,0,0.5); text-align: center; color: #fff;">Stop, I'm getting dizzy!</p> 
-		</div>
-	</div>
-
-
 	<!--content start -->
 	<div class="content">
 		<div class="wrapper">

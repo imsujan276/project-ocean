@@ -61,6 +61,7 @@
 <head>
 	<title> Project Ocean | Contact Us </title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="icon" href="profile_image/Project.png" type="image/gif" sizes="16x16">
 </head>
 <body>
 	<!--header start -->

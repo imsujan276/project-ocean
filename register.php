@@ -51,8 +51,10 @@ header('Location:home.php');
 -->
 <html>
 <head>
+	<link rel="icon" href="profile_image/Project.png" type="image/gif" sizes="16x16">
+	<title> Project Ocean | Register</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<script language="javascript" src="js/formvalid.js"> </script>
+	<!--<script language="javascript" src="js/formvalid.js"> </script>-->
 </head>
 
 <body>
@@ -77,20 +79,7 @@ header('Location:home.php');
 							<strong> Register</strong>
 						</div>
 						<div class="form">
-							<form name="signup" method="post" action="" 
-							onsubmit=" if(submitting) { 
-								alert('The form is being submitted, please wait a moment...'); 
-								rbtn.disabled = true; 
-								return false; 
-							} 
-							else if(checkForm(this)) { 
-								rbtn.value = 'Registering form...'; 
-								submitting = true; 
-								return true; 
-							} 
-							else { 
-							return false; 
-							} ">
+							<form name="signup" method="post" action="">
 								<table cellspacing=5>
 									<tr>
 										<td> </td>
@@ -111,12 +100,14 @@ header('Location:home.php');
 									<tr>
 										<td style="font-size: 17px;"> Username :</td>
 										<td> <input type="text" class="ltext" name="uname" placeholder="Username" value="" required
-											title="Username must not be blank and contain only letters, numbers and underscores." pattern="\w+"> </td>
+											title="Username must not be blank and contain only letters, numbers and underscores." 
+											pattern="\w+"> </td>
 									</tr> 
 									<tr>
 										<td style="font-size: 17px;"> Password :</td>
 										<td> <input type="password" class="ltext" name="pass" placeholder="Password" value="" required
-											 title="Password must contain at least 6 characters, including UPPER/lowercase and numbers." pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"> </td>
+											 title="Password must contain at least 6 characters, including UPPER/lowercase and numbers." 
+											 pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"> </td>
 									</tr> 
 									<tr>
 										<td style="font-size: 17px;"> Confirm password :</td>
