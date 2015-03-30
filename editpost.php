@@ -4,18 +4,19 @@
 	$project_id=$_GET['project_id'];
 	$query=$item->viewpost($project_id);
 	$data=mysql_fetch_array($query);
+			$msg="";
 
 	if(isset($_POST['upbtn'])){
 			$ptitle=trim($_POST['ptitle']);
 			$description=trim($_POST['description']);
 			$catagory=trim($_POST['catagory']);
-			$filelink=trim($_POST['filelink']);
 			$image= "Img"."_".rand(0,99)."_".$_FILES["image"]["name"];
 			$mainfile= "File"."_".rand(0,99)."_".$_FILES["mainfile"]["name"];
 			
-			$query=$item->updatepost($ptitle,$description,$catagory,$image,$mainfile,$filelink,$project_id);
+			$query=$item->updatepost($ptitle,$description,$catagory,$image,$mainfile,$project_id);
 
 			if($query){
+				$msg="File Edited Sucessfully!!! ";
 				if($_FILES["image"]["size"]>1024)
 				{
 					move_uploaded_file($_FILES["image"]["tmp_name"],"up_image/".$image);	
@@ -28,8 +29,7 @@
 				header('Location:post.php?project_id='.$item->lastID());
 			}
 			else{
-				echo"Something went wrong... Try again ";
-				header('Location:submit.php?act=error');
+				$msg="Error Occured... Please Try again later";
 			}
 		}
 ?>
@@ -73,7 +73,7 @@
 									</tr> 
 									<tr>
 										<td style="font-size: 17px;">Description :</td>
-										<td> <textarea cols=35 rows=4 class="dtext" name="description" placeholder="Description" <?php echo $data['description'] ?> required></textarea> </td>
+										<td> <textarea cols=35 rows=6 class="dtext" name="description" placeholder="Description"  ><?php echo $data['description'] ?></textarea> </td>
 									</tr> 
 									<tr>
 										<td style="font-size: 17px;"> Catagory :</td>
@@ -96,19 +96,17 @@
 									</tr> 
 									<tr>
 										<td style="font-size: 17px;"> Snapshot :</td>
-										<td> <input type="file"  name="image" value="<?php echo $data['image'] ?>" required><a href="up_image/<?php echo $data['image']; ?>">  <font size=1px><?php echo $data['image'] ?></font> </a> </td>
+										<td> <input type="file"  name="image" value="<?php echo $data['image'] ?>" ><a href="up_image/<?php echo $data['image']; ?>">  <font size=1px><?php echo $data['image'] ?></font> </a> </td>
 									</tr> 
 									<tr>
 										<td style="font-size: 17px;"> Main report<span>*</span> :</td>
-										<td> <input type="file"  name="mainfile" value="<?php echo $data['mainfile'] ?>" required><a href="up_file/<?php echo $data['mainfile']; ?>"> <font size=1px><?php echo $data['mainfile'] ?></font></a></td>
-									</tr> 
-									<tr>
-										<td style="font-size: 17px;"> Link to file :</td>
-										<td> <input type="text"  class="ltext" name="filelink" placeholder="Link to file or report (optional)" 
-											value="<?php echo $data['filelink'] ?>"> </td>
+										<td> <input type="file"  name="mainfile" value="<?php echo $data['mainfile'] ?>" ><a href="up_file/<?php echo $data['mainfile']; ?>"> <font size=1px><?php echo $data['mainfile'] ?></font></a></td>
 									</tr>
 									<tr>
 										<td colspan=2> <span>*</span> Please upload the zipped file </td>
+									</tr>
+									<tr>
+										<td colspan=2 align="center"> <?php echo $msg; ?> </td>
 									</tr>
 									<tr>
 										<td colspan=2 align="right"> <input type="submit" class="btn" name="upbtn" value="Edit Project" ></td>

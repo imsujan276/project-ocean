@@ -31,6 +31,11 @@ class itemClass extends database{
 			return $this->exec($sql);
 		}
 
+		public function viewpopular(){
+			$sql="select * from projects,user where projects.user_id=user.user_id order by projects.hits desc limit 0,10";
+			return $this->exec($sql);
+		}
+
 		public function viewrecent(){
 			$sql="select * from projects,user where projects.user_id=user.user_id order by projects.date desc limit 0,10";
 			return $this->exec($sql);
@@ -42,13 +47,13 @@ class itemClass extends database{
 		}
 
 		public function viewpost($id){
-			$sql="select * from projects,user where projects.project_id='$id'";
+			$sql="select * from projects,user where projects.project_id='$id' AND user.user_id=projects.user_id";
 			return $this->exec($sql);
 		}
 
-		public function updatepost($ptitle,$description,$catagory,$image,$mainfile,$filelink,$project_id){
+		public function updatepost($ptitle,$description,$catagory,$image,$mainfile,$project_id){
 			$sql="update projects set title='$ptitle', description='$description', catagory='$catagory', image='$image', 
-			mainfile='$mainfile', filelink='$filelink' where project_id=$project_id";
+			mainfile='$mainfile' where project_id=$project_id";
 		}
 
 		public function search($search){
@@ -61,19 +66,28 @@ class itemClass extends database{
 			return $this->exec($sql);
 		}
 
-		public function setcomment($user,$id,$comment){
-			$sql="insert into comment set comment='$comment', project_id='$id', user_id='$user'";
+		public function setcomment($user,$user_id,$id,$comment){
+			$sql="insert into comment set `comment`='$comment', `project_id`='$id', `user`='$user', `user_id`=$user_id";
 			return $this->exec($sql);
 		}
 
-		function viewcomment($user_id){
-			$sql="select * from user,comment,projects where (user.user_id=comment.user_id AND comment.project_id=projects.user_id) 
-			AND (user_id=$user_id AND project_id= (select project_id from projects where user_id=$user_id )) ";
+		public function viewcomment($project_id){
+			$sql="SELECT * FROM `comment` WHERE `project_id`=$project_id limit 0,15";
+			return $this->exec($sql);
+		}
+
+		public function viewmycomment($user_id){
+			$sql="SELECT * FROM `comment`WHERE `comment.user_id`=$user_id limit 0,10";
 			return $this->exec($sql);
 		}
 
 		public function deletepost($projectid){
 			$sql = "delete from projects where project_id=$projectid";
+			return $this->exec($sql);
+		}
+
+		public function hits($id){
+			$sql="UPDATE projects set `hits`=`hits`+1 where (project_id ='$id')";
 			return $this->exec($sql);
 		}
 } //end of itemClass

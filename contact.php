@@ -1,4 +1,5 @@
 <?php 
+	$msg="";
 	include_once("class/classes.php");
 	if(isset($_POST['cbtn'])){
 		// message
@@ -12,15 +13,11 @@
 
 		$query=$feedback->feedback($name,$contact,$from,$message);
 		if($query){
-			echo"<script language=javascript'>		  	
-			alert('Thank you for your response.<br> Your message has been sent to Project Ocean has been sent sucessfully !!!!');		 
-			</script>";
+			$msg="Thank you for your response.<br> Your message to Project Ocean has been sent sucessfully !!!!')";
 		  //	header("location:contact.php?sucessfully_sent");
 		}
 		else{
-			 echo"<script language=javascript'>		  	
-			 alert('Error Occured.... Please try again.');		  	
-			 </script>";
+			 $msg="Error Occured.... Please try again.')";
 		  //	header("location:contact.php?error_occured");
 		}
 	
@@ -42,16 +39,10 @@
 		// Mail it
 		$mail=mail($to, $subject, $message, $headers);
 		if($mail){
-		  echo"<script language=javascript'>
-		  	alert('Thank you for your response.<br> Your message has been sent to Project Ocean has been sent sucessfully !!!!');
-		  	</script>";
-		  	header("location:contact.php?sucessfully_sent");
+		  /* $msg="Email Sent')";  */
 		}
 		else{
-		   echo"<script language=javascript'>
-		  	alert('Error Occured.... Please try again.');
-		  	</script>";
-		  	header("location:contact.php?error_occured");
+		  /* $msg="Error Occured.... Please try again.')";*/
 		}
 
 	}
@@ -108,6 +99,9 @@
 									</tr> 	
 									<tr>
 										<td colspan=2> <span>*</span> Required Fields </td>
+									</tr>
+									<tr>
+										<td colspan=2 align="center"> <font color="#800"> <?php echo $msg; ?> </font></td>
 									</tr>
 									<tr>
 										<td colspan=2 align="right"> <input type="submit" class="btn" name="cbtn" value="Contact Us" >

@@ -5,6 +5,7 @@ header('Location:home.php');
 	}
 ?>
 <?php
+	$err="";
 	include_once("class/classes.php");
 	if(isset($_POST['rbtn'])){
 		if(($_POST['pass'])===($_POST['cpass'])){
@@ -49,6 +50,7 @@ header('Location:home.php');
 	*/
 ?>
 -->
+
 <html>
 <head>
 	<link rel="icon" href="profile_image/Project.png" type="image/gif" sizes="16x16">

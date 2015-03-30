@@ -37,18 +37,89 @@ class userClass{
 	}
 	
 
-	public function profileupdate($fname,$lname,$email,$pass,$profilepic,$country,$city,$college){
+	public function profileupdate($user_id,$fname,$lname,$email,$pass,$profilepic,$country,$city,$college,$education,$question,$answer){
 			$sql = "update user set firstname='$fname',lastname='$lname',email='$email',password='".md5($pass)."',
-			profilepic='$profilepic',country='$country',city='$city',college='$college'";
+			profilepic='$profilepic',country='$country',city='$city',college='$college',education='$education',
+			`security_quest`= '$question',`security_ans` = '$answer' where user_id='$user_id'";
 			return $this->exec($sql);
 	}
 
-	public function profileupdate1($fname,$lname,$email,$profilepic,$country,$city,$college){
-			$sql = "update user set firstname='$fname',lastname='$lname',email='$email',profilepic='$profilepic',
-			country='$country',city='$city',college='$college'";
+	public function profileupdate1($user_id,$fname,$lname,$email,$profilepic,$country,$city,$college,$education,$question,$answer){
+			//echo $sql = "update user set firstname='$fname',lastname='$lname',email='$email',profilepic='$profilepic',country='$country',city='$city',college='$college',education='$education'";
+			$sql="UPDATE 
+				`user` 
+			SET 
+				`firstname` = '$fname', 
+				`lastname` = '$lname', 
+				`email` = '$email',  
+				`profilepic` = '$profilepic', 
+				`country` = '$country', 
+				`city` = '$city', 
+				`college` = '$college`, 
+				`education` = '$education' 
+				`security_quest`= '$question',
+				`security_ans` = '$answer'
+			WHERE 
+				`user_id` = '$user_id'";
 			return $this->exec($sql);
 	}
 
+	public function profileupdate2($user_id,$fname,$lname,$email,$pass,$country,$city,$college,$education,$question,$answer){
+			//echo $sql = "update user set firstname='$fname',lastname='$lname',email='$email',profilepic='$profilepic',country='$country',city='$city',college='$college',education='$education'";
+			$sql="UPDATE 
+				`user` 
+			SET 
+				`firstname` = '$fname', 
+				`lastname` = '$lname', 
+				`email` = '$email',  
+				password='".md5($pass)."', 
+				`country` = '$country', 
+				`city` = '$city', 
+				`college` = '$college`, 
+				`education` = '$education' 
+				`security_quest`= '$question',
+				`security_ans` = '$answer'
+			WHERE 
+				`user_id` = '$user_id'";
+			return $this->exec($sql);
+	}
+
+	public function profileupdate3($user_id,$fname,$lname,$email,$country,$city,$college,$education,$question,$answer){
+			//echo $sql = "update user set firstname='$fname',lastname='$lname',email='$email',profilepic='$profilepic',country='$country',city='$city',college='$college',education='$education'";
+			$sql="UPDATE 
+				`user` 
+			SET 
+				`firstname` = '$fname', 
+				`lastname` = '$lname', 
+				`email` = '$email',  
+				`country` = '$country', 
+				`city` = '$city', 
+				`college` = '$college`, 
+				`education` = '$education' 
+				`security_quest`= '$question',
+				`security_ans` = '$answer'
+			WHERE 
+				`user_id` = '$user_id'";
+			return $this->exec($sql);
+	}
+
+
+
+		public function check($question,$answer,$pass){
+		$sql="select * from user where security_quest='$question' and security_ans='$answer'";
+		$result=$this->exec($sql);
+		if($result){
+			$sql="update user set password='$pass' where `security_quest`='$question' and `security_ans`='$answer'";
+			$result1=$this->exec($sql);
+			if($result1){
+				return $this->exec($sql);
+			}
+		}
+		else{
+			return false;	
+		} 
+	}
+	
 }	//end of userClass
 
 $user = new userClass();

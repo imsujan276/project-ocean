@@ -81,10 +81,10 @@
 							</div>
 							<div class="ptitle" id="t1">
 								<h2><a  href="post.php?project_id=<?php echo $data['project_id']; ?>"> &nbsp;<?php echo $data['title']; ?> </a></h2>
-								<p> &bull;&nbsp;<a href="profile.php?user_id=<?php echo $data['user_id'] ?>"> <?php echo $data['firstname'];?>
-									&nbsp;<?php echo $data['lastname']; ?> </a>  
-									&bull;&nbsp;<?php echo $data['college']; ?>
-									&bull;&nbsp;<?php echo $data['date']; ?>
+								<p> &nbsp;&nbsp;<a href="profile.php?user_id=<?php echo $data['user_id'] ?>"> <?php echo $data['firstname'];?>
+									&nbsp;<?php echo $data['lastname']; ?> </a>  <br>
+									&nbsp;&nbsp;<?php echo $data['college']; ?><br>
+									&nbsp;&nbsp;<?php echo $data['date']; ?>
 								</p>
 							</div>	
 						</div>

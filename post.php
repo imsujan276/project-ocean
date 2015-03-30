@@ -4,23 +4,14 @@
 	$query=$item->viewpost($id);
 	$query=mysql_fetch_array($query);
 
-	$dat=$item->viewrecent();
+	$hits=$item->hits($id);
 
-	$user=$item->lastID();
-	$viewcomment=$item->viewcomment($user,$id);
+	$dat=$item->viewpopular();
 
-	if(isset($_POST['sbtn'])){
-			$comment=trim($_POST['comment']);
-			$user=$item->lastID();
-			$id=$_GET['project_id'];
-			$query=$item->setcomment($user,$id,$comment);
-			if($query){
-				echo"Sucessfuly commented";
-			}
-			else{
-				echo"error occured";
-			}
-	}
+	/*$user=$item->lastID();*/
+	$user=$_SESSION['uname'];
+	$viewcomment=$item->viewcomment($id);
+	$count=mysql_num_rows($viewcomment);
 ?>
 
 
@@ -50,7 +41,8 @@
 		<div class="ppost">
 			<div class="ptitle">
 				<h2> <?php echo $query['title']; ?></h2>
-				<p> &bull;&nbsp;<a href="profile.php?<?php echo $query['user_id']; ?>"><?php echo $query['firstname'];?> <?php echo $query['lastname']; ?> </a> </p>
+				<p> &bull;&nbsp;<a href="profile.php?user_id=<?php echo $query['user_id']; ?>"><?php echo $query['firstname'];?> 
+					<?php echo $query['lastname']; ?> </a> </p>
 			</div>
 			<div class="pbody">
 				<div class="pcontent">
@@ -68,8 +60,8 @@
 			</div>
 			<div class="files">
 				<?PHP $fileName = $query['mainfile']; ?>
-				<a class="btn" href="up_file/<?PHP echo $query['mainfile'];?>">Download Main Report</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a class="btn" href="<?PHP echo $query['filelink']; ?>"> Link to report/file</a>
+				<p ><?PHP echo $query['hits'].' Views'; ?></p><a class="btn" href="up_file/<?PHP echo $query['mainfile'];?>">Download Main Report</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				
 			</div>
 			<hr/>
 
@@ -80,24 +72,38 @@
 				<?php if(isset($_SESSION['uname'])) 
 					{ 
 				?>
-					<h3><u>Comments: </u></h3></br>
-					<form name="comment" method="post" action="">
-						<textarea class="dtext" cols=60 name="comment" placeholder="Comments" value="" required maxlength="70"> </textarea>
-						<input type="submit" name="sbtn" class="btn" value="Comment"><br/><br/>
+					<h3><u>Comment: </u></h3></br>
+					<form name="comment" method="post" action="comment_action.php?project_id=<?php echo $id ?>&user=<?php echo $user ?>">
+						<textarea class="dtext" cols=60 name="comment" placeholder="Comments" value="" required maxlength="255"> </textarea>
+						<input type="submit" name="cmt" class="btn" value="Comment"><br/><br/>
 					</form>
 				<?php
 				}
 				else{
 				?>
-				<h1> Please <a href="login.php">login</a> or <a href="register.php">register</a> to comment. </h1> </br>
-			<?php
-				}
-				while($comment=mysql_fetch_array($viewcomment)) {
-			?>
-				<i> <?php echo $comment['user_id']; ?> </i><p><?php echo $comment['comment'];?> </p><br/><br/>
-			<?php
-				}
-			?>
+					<h1> Please <a href="login.php">login</a> or <a href="register.php">register</a> to comment. </h1> </br>
+				<?php
+					}
+				?>
+				
+				<h3><u>Latest Comments: </u></h3></br>
+				<table cellpadding=5>
+					<?php
+						while($comment=mysql_fetch_array($viewcomment)) {
+					?>
+						<tr>
+							<td><b> <?php echo $comment['user']; ?> </b></td>
+							<td>:</td>
+							<td><?php echo $comment['comment'];?> </td>
+						</tr>
+					<?php
+						}
+					?>
+				</table>
+
+				<?php 
+					
+				?>
 
 			<!-- Comment ended -->
 
@@ -105,7 +111,7 @@
 		</div>
 		<div class="right-sidebar">
 			<div class="rtitle">
-				<h4>Recent Uploads </h4>
+				<h4>Popular posts </h4>
 			</div>
 			<div class="ptitle">
 				<table width=100% cellspacing=8>
